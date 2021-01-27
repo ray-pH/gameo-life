@@ -59,7 +59,7 @@ $initstr = array(
 );
 $world   = initBoard($initstr, $height, $width);
 showBoard($world, '#', '.');
-for ($i = 0; $i < 99999; $i++){
+while (true){
     echo "\033[{$height}A";
     $world   = nextState($world);
     showBoard($world, '#', '.');

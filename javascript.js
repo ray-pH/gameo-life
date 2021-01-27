@@ -54,7 +54,7 @@ async function main(){
     ];
     let world = initBoard(initstr, height, width);
     console.log(showBoard(world,'#','.'));
-    for (let i = 0; i < 9999; i++){
+    while (true) {
         console.log('\033'+`[${height+1}A`);
         world = nextStage(world);
         console.log(showBoard(world,'#','.'));
