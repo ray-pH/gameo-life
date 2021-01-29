@@ -51,10 +51,15 @@ Zend Engine v3.4.0, Copyright (c) Zend Technologies
 $ bash --version
 GNU bash, version 5.0.17(1)-release (x86_64-pc-linux-gnu)
 Copyright (C) 2019 Free Software Foundation, Inc.
-License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
 ```
 
 ### J
 ```
 ijconsole-9.01
+```
+
+### R
+```
+$ Rscript --version
+R scripting front-end version 3.6.3 (2020-02-29)
 ```
