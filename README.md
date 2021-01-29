@@ -69,3 +69,9 @@ R scripting front-end version 3.6.3 (2020-02-29)
 $ rustc --version
 rustc 1.48.0 (7eac88abb 2020-11-16)
 ```
+
+### Ruby
+```
+$ ruby --version
+ruby 2.7.0p0 (2019-12-25 revision 647ee6f091) [x86_64-linux-gnu]
+```
