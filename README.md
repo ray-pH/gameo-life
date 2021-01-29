@@ -4,7 +4,7 @@ Just a fun project, writing simple CLI of Conway's Game of Life in multiple lang
 
 ![Screenshot](./thumbnail.png)
 
-# Compiler/Interpreter used
+# Compiler/Interpreter that has been tested working
 ### Pascal
 ```
 $ fpc
@@ -33,7 +33,7 @@ The Glorious Glasgow Haskell Compilation System, version 8.6.5
 
 ### Javascript
 ```
-$  node --version
+$ node --version
 v10.19.0
 ```
 
