@@ -63,3 +63,9 @@ ijconsole-9.01
 $ Rscript --version
 R scripting front-end version 3.6.3 (2020-02-29)
 ```
+
+### Rust
+```
+$ rustc --version
+rustc 1.48.0 (7eac88abb 2020-11-16)
+```
