@@ -75,3 +75,9 @@ rustc 1.48.0 (7eac88abb 2020-11-16)
 $ ruby --version
 ruby 2.7.0p0 (2019-12-25 revision 647ee6f091) [x86_64-linux-gnu]
 ```
+
+### Perl
+```
+$ perl --version
+This is perl 5, version 30, subversion 0 (v5.30.0) built for x86_64-linux-gnu-thread-multi
+```
