@@ -1,5 +1,8 @@
 #include<iostream>
 #include<vector>
+#include<fstream>
+#include<sstream>
+
 #ifdef _WIN32
     #include <windows.h>
 #else
@@ -57,18 +60,23 @@ board nextState(board oldboard){
 }
 
 int main(){
-    const int height = 8;
-    const int width  = 10;
-    vector<string> initstr  = {
-        ".#.",
-        "..#",
-        "###"
-    };
+    string header;
+    string buff;
+    vector<string> initstr;
+
+    ifstream input("input.txt");
+        getline(input, header);
+        while (getline(input, buff)) initstr.push_back(buff);
+    input.close();
+
+    stringstream ss(header);
+    getline(ss,buff,' '); const int height = stoi(buff);
+    getline(ss,buff,' '); const int width  = stoi(buff);
+
     board world = initBoard(initstr, height, width);
     showBoard(world, '#', '.');
     while (true) {
         cout << "\033[" << height << 'A';
-        cout << "\033[" << width  << 'D';
         world = nextState(world);
         showBoard(world, '#', '.');
         sleep(250);
