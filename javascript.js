@@ -45,13 +45,14 @@ function nextStage(board){
 };
 
 async function main(){
-    let height = 8;
-    let width = 10;
-    let initstr = [
-        '.#.',
-        '..#',
-        '###'
-    ];
+    let fs = require('fs');
+    let fileInput = fs.readFileSync('input.txt', 'utf8').split("\n");
+    let header = fileInput[0].split(" ").map( x => parseInt(x) );
+
+    let initstr = fileInput.slice(1, fileInput.length-1);
+    let height  = header[0];
+    let width   = header[1];
+
     let world = initBoard(initstr, height, width);
     console.log(showBoard(world,'#','.'));
     while (true) {
