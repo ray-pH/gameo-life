@@ -46,11 +46,13 @@ def nextState(board):
 
 
 def main():
-    height  = 8
-    width   = 10
-    initstr = ['.#.',
-               '..#',
-               '###']
+    initstr = []
+
+    f = open('input.txt','r')
+    height , width = map(lambda x : int(x), f.readline().split(' '))
+    for row in f : initstr.append(row[:-1])
+    f.close()
+
     world   = initBoard(initstr, height, width)
     writeBoard(world,'#','.')
     while True:
