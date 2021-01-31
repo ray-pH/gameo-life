@@ -51,14 +51,12 @@ sub nextStage {
     return @next;
 }
 
-my $height  = 8;
-my $width   = 10;
-my @initstr = (
-    ".#.",
-    "..#",
-    "###"
-);
 
+open my $inputFile, '<', "input.txt" or die $!;
+chomp (my ($header, @initstr) = <$inputFile>);
+close $inputFile;
+
+my ($height, $width) = split ' ', $header; 
 my @world = initBoard($height, $width, @initstr);
 showBoard('#', '.', @world);
 for (0..1000){
