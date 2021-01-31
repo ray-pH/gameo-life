@@ -1,5 +1,5 @@
 program gol;
-uses crt;
+uses crt, sysutils, strutils;
 type
     Cell  = (dead, alive);
     Board = Array of Array of Cell;
@@ -57,21 +57,35 @@ end;
 
 var
     { constants  }
-    height   : Integer = 8;
-    width    : Integer = 10;
+    inp      : Text;
+    header,
+    tempstr  : AnsiString;
+    initstr,
+    headspl  : Array of AnsiString;
+    height,
+    width    : Integer;
     chrAlive : Char    = '#';
     chrDead  : Char    = '.';
-    initstr  : Array of AnsiString 
-             = ('.#.',
-                '..#',
-                '###');
     world    : Board;
 begin
+    setLength(initstr, 0);
+    assign(inp, 'input.txt');
+    reset(inp); readln(inp, header);
+    while not EOF(inp) do begin
+        readln(inp, tempstr);
+        setLength(initstr, Length(initstr)+1);
+        initstr[Length(initstr)-1] := tempstr;
+    end;
+    close(inp);
+
+    headspl := SplitString(header, ' ');
+    height := StrToInt(headspl[0]);
+    width  := StrToInt(headspl[1]);
+
     world := initialBoard(initstr, height, width);
     showBoard(world, chrAlive, chrDead);
     while True do begin
         write(#27, '[', height, 'A');
-        write(#27, '[', width , 'D');
         world := nextState(world);
         showBoard(world, chrAlive, chrDead);
         delay(250);
