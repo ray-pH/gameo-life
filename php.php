@@ -50,14 +50,15 @@ function nextState($board){
     return $next;
 }
 
-$width   = 10;
-$height  = 8;
-$initstr = array(
-    ".#.",
-    "..#",
-    "###"
-);
-$world   = initBoard($initstr, $height, $width);
+$inputFile = fopen("input.txt", "r") or die("err file");
+$header    = explode(" ", fgets($inputFile));
+$initstr   = explode("\n", fread($inputFile, filesize("input.txt")));
+fclose($inputFile);
+
+$height    = $header[0];
+$width     = $header[1];
+
+$world     = initBoard($initstr, $height, $width);
 showBoard($world, '#', '.');
 while (true){
     echo "\033[{$height}A";
