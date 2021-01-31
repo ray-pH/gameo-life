@@ -3,6 +3,9 @@ package main
 import (
     "fmt"
     "time"
+    "strings"
+    "strconv"
+    "io/ioutil"
 )
 
 type Cell int
@@ -59,13 +62,13 @@ func nextStage(board Board) Board{
 }
 
 func main() {
-    var height int = 8
-    var width  int = 10
-    var initstr = []string{
-        ".#.",
-        "..#",
-        "###",
-    }
+    var inputFile, _      = ioutil.ReadFile("input.txt")
+    var inpSlice []string = strings.Split(string(inputFile), "\n")
+    var header   []string = strings.Split(inpSlice[0], " ")
+    var initstr  []string = inpSlice[1:]
+    var height, _         = strconv.Atoi(header[0])
+    var width , _         = strconv.Atoi(header[0])
+
     var world Board = initBoard(initstr, height, width)
     showBoard(world, '#', '.')
     for i := 0; i < 10000; i++{
