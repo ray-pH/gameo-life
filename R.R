@@ -66,11 +66,14 @@ nextStage <- function(board, h, w){
     return(newboard)
 }
 
-height  <- 8
-width   <- 10
-initstr <- c(".#.",
-             "..#",
-             "###")
+inputFile <- scan("input.txt", what="", sep="\n")
+header    <- inputFile[1]
+initstr   <- inputFile[-1]
+
+headstr   <- strsplit(header, " ")[[1]]
+height    <- strtoi(headstr[1])
+width     <- strtoi(headstr[2])
+
 board <- initboard(initstr,height,width)
 showBoard(board, '#', '.')
 
