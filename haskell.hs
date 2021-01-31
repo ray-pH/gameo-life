@@ -1,4 +1,5 @@
 import Control.Concurrent
+import System.IO
 
 data Cell = Alive | Dead
     deriving (Show, Eq)
@@ -62,13 +63,19 @@ gol prev (h,w) = do
     threadDelay 250000
     gol next (h,w)
 
+split :: Eq a => a -> [a] -> [[a]]
+split d [] = []
+split d s = x : split d (drop 1 y) where (x,y) = span (/= d) s
+
+mapTuple :: (a -> b) -> (a, a) -> (b, b)
+mapTuple f (a1, a2) = (f a1, f a2)
+
 main :: IO()
 main = do
-    let height  = 8
-        width   = 10
-        initStr = [".#.",
-                   "..#",
-                   "###"]
+    file <- openFile "input.txt" ReadMode
+    cont <- hGetContents file
+    let (header : initStr) = lines cont
+        (height, width)    = mapTuple (read :: String -> Int) $ span (/= ' ') header
         initb   = initBoard initStr height width
     putStr $ showBoard '#' '.' initb 
     gol initb (height, width)
