@@ -1,4 +1,4 @@
-use std::{thread, time};
+use std::{thread, time, fs};
 
 #[derive(Copy, Clone, Debug, PartialEq)]
 enum Cell { ALIVE, DEAD, }
@@ -44,13 +44,19 @@ fn next_stage(board:Vec<Vec<Cell>>) -> Vec<Vec<Cell>> {
 }
 
 fn main(){
-    let height : usize = 8;
-    let width  : usize = 10;
-    let initstr : Vec<&str> = vec![
-        ".#.",
-        "..#",
-        "###"
-    ];
+    let input_file = fs::read_to_string("input.txt").expect("err");
+    let mut initstr : Vec<&str> = 
+        input_file.split("\n")
+        .filter(|&x| !x.is_empty())
+        .collect();
+    let header : Vec<usize> = 
+        initstr[0].split(" ")
+        .map(|s| s.parse().unwrap())
+        .collect();
+    initstr.drain(0..1);
+
+    let height : usize = header[0];
+    let width  : usize = header[1];
     let mut world : Vec<Vec<Cell>> 
         = init_board(initstr, height, width);
     show_board(&world, '#', '.');
