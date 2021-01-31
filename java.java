@@ -1,3 +1,8 @@
+import java.util.ArrayList;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
 public class java {
     enum Cell { DEAD, ALIVE }
 
@@ -8,13 +13,13 @@ public class java {
         }
     }
 
-    public static Cell[][] initBoard(String[] strarr, int h, int w){
+    public static Cell[][] initBoard(ArrayList<String> strarr, int h, int w){
         Cell[][] board = new Cell[h][w];
         for (int i = 0; i < h; i++)
             for (int j = 0; j < w; j++) board[i][j] = Cell.DEAD;
-        for (int i = 0; i < strarr.length; i++){
-            for (int j = 0; j < strarr[i].length(); j++){
-                if (strarr[i].charAt(j) == '#') board[i][j] = Cell.ALIVE;
+        for (int i = 0; i < strarr.size(); i++){
+            for (int j = 0; j < strarr.get(i).length(); j++){
+                if (strarr.get(i).charAt(j) == '#') board[i][j] = Cell.ALIVE;
             }
         }
         return board;
@@ -47,7 +52,7 @@ public class java {
     public static Cell[][] nextStage(Cell[][] board){
         int height = board.length;
         int width  = board[0].length;
-        Cell[][] next = initBoard(new String[0],height,width);
+        Cell[][] next = initBoard(new ArrayList<String>(),height,width);
         for (int i = 0; i < height; i++){
             for (int j = 0; j < width; j++){
                 int n = countNeighbors(board, i, j);
@@ -58,22 +63,32 @@ public class java {
     }
 
     public static void main(String[] args){
-        int height = 8;
-        int width  = 10;
-        char aliveChar   = '#';
-        char deadChar    = '.';
-        String[] initstr = {
-            ".#.",
-            "..#",
-            "###"
-        };
-        Cell[][] world = initBoard(initstr, height, width);
-        showBoard(world, aliveChar, deadChar);
-        while (true) {
-            world = nextStage(world);
-            System.out.print("\033[" + Integer.toString(height) + "A");
+        try{
+            String[] header;
+            ArrayList<String> initstr = new ArrayList<String>();
+
+            File inputFile = new File("input.txt");
+            Scanner fileScanner = new Scanner(inputFile);
+            header = fileScanner.nextLine().split(" ");
+            while (fileScanner.hasNextLine())
+                initstr.add(fileScanner.nextLine());
+            fileScanner.close();
+
+            char aliveChar   = '#';
+            char deadChar    = '.';
+            int height = Integer.parseInt(header[0]);
+            int width  = Integer.parseInt(header[1]);
+
+            Cell[][] world = initBoard(initstr, height, width);
             showBoard(world, aliveChar, deadChar);
-            wait(250);
+            while (true) {
+                world = nextStage(world);
+                System.out.print("\033[" + Integer.toString(height) + "A");
+                showBoard(world, aliveChar, deadChar);
+                wait(250);
+            }
+        } catch (FileNotFoundException e){
+            e.printStackTrace();
         }
     }
 }
