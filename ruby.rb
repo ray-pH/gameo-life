@@ -40,13 +40,10 @@ def nextStage(board)
     return newb
 end
 
-height = 8
-width  = 10
-initstr = [
-    ".#.",
-    "..#",
-    "###"
-]
+inputFile      = File.new("input.txt", "r")
+height, width  = inputFile.gets.split(' ').map { |x| x.to_i }
+initstr        = inputFile.each_line.collect { |line| line.to_s[0..-2] }
+inputFile.close
 
 world = initBoard(initstr, height, width)
 showBoard(world, '#', '.')
