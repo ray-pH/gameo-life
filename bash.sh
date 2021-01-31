@@ -82,16 +82,24 @@ nextStage () {
     done
 }
 
-width=10
-height=8
-initstr=(".#." "..#" "###")
+initraw=""
+{
+    read -r header
+    while read line; do
+        initraw="${initraw}$line "
+    done
+} < 'input.txt'
+headerarray=($header)
+height=${headerarray[0]}
+width=${headerarray[1]}
+initstr=($initraw)
+
 aliveChar='#'
 deadChar='.'
 declare -A world
 declare -A newworld
 initBoard initstr world
 showBoard world $aliveChar $deadChar
-# for i in {1..10}; do
 while true; do
     nextStage world newworld
     echo -e "\033[$(($height + 1))A"
