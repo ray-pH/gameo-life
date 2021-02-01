@@ -1,6 +1,7 @@
 # Game Of Life
 
-Just a fun project, writing simple CLI of Conway's Game of Life in multiple languages
+Just a fun project, writing simple CLI of Conway's Game of Life in multiple languages\
+All of the implementation is using ANSI escape sequence to move the terminal cursor `\003[nA`, it might not works for old version of windows' conhost.exe and cmd.exe
 
 ![Screenshot](./thumbnail.png)
 
@@ -94,4 +95,10 @@ OpenJDK 64-Bit Server VM (build 11.0.9.1+1-Ubuntu-0ubuntu1.20.04, mixed mode, sh
 ```
 $ go version
 go version go1.13.8 linux/amd64
+```
+
+### Julia
+```
+$ julia --version
+julia version 1.4.1
 ```
