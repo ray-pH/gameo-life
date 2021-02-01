@@ -1,7 +1,7 @@
 # Game Of Life
 
 Just a fun project, writing simple CLI of Conway's Game of Life in multiple languages\
-All of the implementation is using ANSI escape sequence to move the terminal cursor `\003[nA`, it might not works for old version of windows' conhost.exe and cmd.exe
+All of the implementation is using ANSI escape sequence to move the terminal cursor `\033[nA`, it might not works for old version of windows' conhost.exe and cmd.exe
 
 ![Screenshot](./thumbnail.png)
 
